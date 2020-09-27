@@ -5,7 +5,9 @@ const query = require('querystring');
 // Main event handlers
 const externalApiHandler = require('./externalApiHandler.js');
 const putHandler = require('./putHandler.js');
+const requestHandler = require('./requestHandler.js');
 
+// Get a port to run on
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 // Handles incoming requests to the server
@@ -20,7 +22,8 @@ const onRequest = (req, res) => {
 
   switch (req.method) {
     case 'GET':
-      console.log(params);
+      if (parsedUrl.pathname === '/') requestHandler.getClient(req, res);
+      if (params.author) externalApiHandler.getAuthorCode(params.author);
       break;
     case 'PUT':
       putHandler.handlePutRequest(req, res, parsedUrl, () => { });

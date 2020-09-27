@@ -24,7 +24,10 @@ const getAuthorCode = async (authorName) => {
   const xmlText = await response.text();
   const json = await x2j.parseStringPromise(xmlText);
 
-  console.log(json.GoodreadsResponse);
+  console.log(json.GoodreadsResponse.author);
+  console.log(json.GoodreadsResponse.author[0].$.id);
+  console.log(Object.keys(json.GoodreadsResponse.author[0]));
+  // return json.GoodreadsResponse.author.$.id;
 };
 
 module.exports = {
