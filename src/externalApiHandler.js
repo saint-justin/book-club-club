@@ -17,6 +17,21 @@ const getBrandon = async () => {
   console.log(author);
 };
 
+const getAuthorBooks = async (authorId) => {
+  const response = await fetch(`https://www.goodreads.com/author/show.xml?key=${secret.key}&id=${authorId}&page=2`);
+  const xmlText = await response.text();
+  const json = await x2j.parseStringPromise(xmlText);
+
+  const authorBooks = json.GoodreadsResponse.author[0].books[0].book;
+  // console.log(authorBooks[0].id[0]._);
+  for (let i = 0; i < authorBooks.length; i++) {
+    console.log(`ID: ${authorBooks[i].id[0]._}    TITLE: ${authorBooks[i].title}`);
+  }
+
+  const bookNumber = Math.floor(Math.random() * authorBooks.length);
+  console.log(`AUTHOR BOOK COUNT: ${authorBooks.length}    RETURNED BOOK: ${bookNumber}`);
+};
+
 // Get an author code by a given author
 const getAuthorCode = async (authorName) => {
   const encodedName = encodeURIComponent(authorName);
@@ -24,13 +39,15 @@ const getAuthorCode = async (authorName) => {
   const xmlText = await response.text();
   const json = await x2j.parseStringPromise(xmlText);
 
-  console.log(json.GoodreadsResponse.author);
-  console.log(json.GoodreadsResponse.author[0].$.id);
-  console.log(Object.keys(json.GoodreadsResponse.author[0]));
-  // return json.GoodreadsResponse.author.$.id;
+  // console.log(json.GoodreadsResponse.author);
+  // console.log(json.GoodreadsResponse.author[0].$.id);
+  // console.log(Object.keys(json.GoodreadsResponse.author[0]));
+
+  getAuthorBooks(json.GoodreadsResponse.author[0].$.id);
 };
 
 module.exports = {
   getBrandon,
   getAuthorCode,
+  getAuthorBooks,
 };

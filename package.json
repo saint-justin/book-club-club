@@ -4,10 +4,9 @@
   "description": "A small book recommending service",
   "main": "./src/server.js",
   "scripts": {
-    "start": "node ./src/server.js",
+    "start": "nodemon --watch ./src ./src/server.js",
     "pretest": "eslint ./src --fix",
-    "test": "echo \"Tests Complete\"",
-    "nodemon": "nodemon --watch ./src ./src/server.js"
+    "test": "echo \"Tests Complete\""
   },
   "repository": {
     "type": "git",
