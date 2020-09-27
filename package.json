@@ -4,7 +4,7 @@
   "description": "A small book recommending service",
   "main": "./src/server.js",
   "scripts": {
-    "start": "nodemon --watch ./src --watch ./client ./src/server.js",
+    "start": "node ./src/server.js",
     "pretest": "eslint ./src --fix",
     "test": "echo \"Tests Complete\""
   },
