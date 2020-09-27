@@ -6,5 +6,22 @@
   </head>
   <body>
     <h1>Hello world!</h1>
+    <button id='btn'>dont click me</button>
+    <p id='content'>I'm the content section!</p>
   </body>
+  <script>
+    const button = document.querySelector('#btn');
+    const content = document.querySelector('#content');
+
+    const sendRequest = async (e) => {
+      e.preventDefault();
+
+      let response = await fetch('./getBooks?author=brandon%20sanderson');
+      let json = await response.json();
+      console.log(json);
+      content.innerHTML = json;
+    }
+
+    button.onclick = sendRequest;
+  </script>
 </html>

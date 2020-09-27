@@ -23,7 +23,8 @@ const onRequest = (req, res) => {
   switch (req.method) {
     case 'GET':
       if (parsedUrl.pathname === '/') requestHandler.getClient(req, res);
-      if (params.author) externalApiHandler.getAuthorCode(params.author);
+      if (parsedUrl.pathname === '/getBooks') requestHandler.getReview(req, res, params.author);
+      // if (params.author) externalApiHandler.getAuthorCode(params.author);
       break;
     case 'PUT':
       putHandler.handlePutRequest(req, res, parsedUrl, () => { });
