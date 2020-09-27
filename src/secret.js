@@ -1,4 +1,4 @@
-const secret = 'beep boop new secret';
+const secret = 'GOODREADS_SECRET_GOES_HERE';
 
 module.exports = {
   secret,
