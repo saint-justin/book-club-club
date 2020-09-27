@@ -1,5 +1,5 @@
-const secret = 'GOODREADS_SECRET_GOES_HERE';
+const key = 'dDQJu586sfJXa97ntSTw';
 
 module.exports = {
-  secret,
+  key,
 };
