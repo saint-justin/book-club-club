@@ -3,7 +3,6 @@ const url = require('url');
 const query = require('querystring');
 
 // Main event handlers
-const externalApiHandler = require('./externalApiHandler.js');
 const putHandler = require('./putHandler.js');
 const requestHandler = require('./requestHandler.js');
 

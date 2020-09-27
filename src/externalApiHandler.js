@@ -48,7 +48,7 @@ const getAuthorBooks = async (authorId) => {
 
 // Get an author code by a given author
 const getAuthorCode = async (authorName) => {
-  console.log(`Author requested: ${authorName}`)
+  console.log(`Author requested: ${authorName}`);
   const encodedName = encodeURIComponent(authorName);
   const response = await fetch(`https://www.goodreads.com/api/author_url/${encodedName}?key=${secret.key}`);
   const xmlText = await response.text();
