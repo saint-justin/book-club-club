@@ -15,9 +15,6 @@ const onRequest = (req, res) => {
   let params = '';
   if (req.method !== 'PUT') params = query.parse(parsedUrl.query);
   console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
-  // externalApiHandler.getBrandon();
-
-  // externalApiHandler.
 
   switch (req.method) {
     case 'GET':
