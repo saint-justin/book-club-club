@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/server.js",
     "pretest": "eslint ./src --fix",
-    "test": "echo \"Tests Complete\""
+    "test": "echo \"Tests Complete\"",
+    "dev": "nodemon --watch ./src --watch ./client ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.1",
+    "short-uuid": "^4.1.0",
     "xml2js": "^0.4.23"
   }
 }

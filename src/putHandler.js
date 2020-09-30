@@ -23,7 +23,7 @@ const handlePutRequest = (req, res, parsedUrl, callback) => {
     callback(req, res, parsedUrl, bodyParams);
 
     // Debug output
-    console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}    PARAMS: []`);
+    console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}    PARAMS: [${bodyParams}]`);
   });
 };
 
