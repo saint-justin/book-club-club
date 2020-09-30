@@ -13,16 +13,16 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const onRequest = (req, res) => {
   const parsedUrl = url.parse(req.url);
   const params = parsedUrl.pathname !== 'PUT' ? query.parse(parsedUrl.query) : '';
-  console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}    PARAMS: []`);
+  console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
+  console.log(params);
 
   switch (req.method) {
     case 'GET':
       if (parsedUrl.pathname === '/') requestHandler.getClient(req, res);
       if (parsedUrl.pathname === '/getMeetings') requestHandler.getMeetings(req, res);
-      // if (params.author) externalApiHandler.getAuthorCode(params.author);
       break;
     case 'PUT':
-      putHandler.handlePutRequest(req, res, parsedUrl, () => { });
+      putHandler.handlePutRequest(req, res, parsedUrl, requestHandler.addMeeting);
       break;
     default:
       console.log(`ERR: Method type ${req.method} not acceptable`);
