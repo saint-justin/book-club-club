@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
+    <link rel='stylesheet' href='/styles.css'></link>
   </head>
   <body>
     <h1>Hello world!</h1>
@@ -16,10 +17,28 @@
     const sendRequest = async (e) => {
       e.preventDefault();
 
-      let response = await fetch('./getBooks?author=brandon%20sanderson');
-      let json = await response.json();
-      console.log(json);
-      content.innerHTML = json;
+      const data = {
+        title: 'BookName: The Musical!',
+        date: 'OCT-01-2020',
+        time: '4:20',
+        am: true,
+        timezone: 'PST',
+        zoom: 'zoom.com',
+      };
+
+      console.log('Creating send object')
+
+      const sendObj = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data),
+      };
+
+      console.log('Pushing data...');
+      const response = await fetch('/addMeeting', sendObj);
     }
 
     button.onclick = sendRequest;
