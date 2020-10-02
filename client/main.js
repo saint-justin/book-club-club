@@ -1,8 +1,14 @@
 /* eslint-env browser */
 import timezones from '/timezones.js';
 
+// Getting refs to all the inputs on the page
 const button = document.querySelector('#btn');
 const meetingTitle = document.querySelector('#meeting-title');
+const meetingClub = document.querySelector('#meeting-club');
+const meetingDate = document.querySelector('#meeting-date');
+const meetingTime = document.querySelector('#meeting-time');
+const meetingTimezone = document.querySelector('#meeting-timezone');
+const meetingLink = document.querySelector('#meeting-link');
 
 // Initializes the scripts on the page
 const init = (e) => {
@@ -17,13 +23,12 @@ const sendRequest = async (e) => {
   e.preventDefault();
 
   const data = {
-    title: ,
-    club: inputs[1].value,
-    date: inputs[2].value,
-    time: inputs[3].value,
-    am: false,
-    timezone: inputs[4].value,
-    zoom: inputs[5].value,
+    title: meetingTitle.value,
+    club: meetingClub.value,
+    date: meetingDate.value,
+    time: meetingTime.value,
+    timezone: meetingTimezone.value,
+    zoom: meetingLink.value,
   };
 
   console.log(data);
