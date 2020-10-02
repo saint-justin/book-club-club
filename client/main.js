@@ -1,20 +1,23 @@
 /* eslint-env browser */
-const button = document.querySelector('#btn');
-const inputs = document.querySelectorAll('input');
+import timezones from '/timezones.js';
 
-// Generates 
-const generateTimezones = (e) => {
+const button = document.querySelector('#btn');
+const meetingTitle = document.querySelector('#meeting-title');
+
+// Initializes the scripts on the page
+const init = (e) => {
   e.preventDefault();
 
-  const zones = ct.getAllTimezones();
-  console.log(zones);
+  document.querySelector('#meeting-timezones').innerHTML = timezones;
+  console.log('initializing');
 };
 
+// Sends a request to our server to post information
 const sendRequest = async (e) => {
   e.preventDefault();
 
   const data = {
-    title: inputs[0].value,
+    title: ,
     club: inputs[1].value,
     date: inputs[2].value,
     time: inputs[3].value,
@@ -38,28 +41,6 @@ const sendRequest = async (e) => {
   console.log('Pushing data...');
   const response = await fetch('/addMeeting', sendObj);
   console.log(await response.json());
-};
-
-const loadScript = (url, callback) => {
-  const head = document.head;
-
-  console.log(head);
-  const script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = url;
-
-  script.onload = callback;
-
-  head.appendChild(script);
-};
-
-const init = (e) => {
-  e.preventDefault();
-  console.log('initializing');
-
-  const ctUrl = 'https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.js';
-  loadScript(ctUrl, generateTimezones);
-  console.log('script loaded!');
 };
 
 button.onclick = sendRequest;

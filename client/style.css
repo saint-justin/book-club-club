@@ -29,10 +29,10 @@ main {
   background-color: yellow;
   width: 40vw;
   text-align: center;
+  padding: 32px 0;
 
   font-family: 'Libre Baskerville', serif;
   font-weight: 100;
-  
 }
 
 #meeting-headers h1 {
@@ -53,17 +53,20 @@ main {
 }
 
 #meeting-creation-form label {
-  margin-top: 8px;
+  margin-top: 16px;
+  padding-left: 8px;
 }
 
-#meeting-creation-form input, #meeting-creation-form button {
+#meeting-creation-form input, #meeting-creation-form select {
   margin-top: 4px;
-  padding: 4px;
+  padding: 8px;
 }
 
 #meeting-creation-form button {
   width: 40%;
   align-self: flex-end;
+  margin-top: 16px;
+  padding: 8px;
 }
 
 /* === Rules for Upcoming Meetings section === */
