@@ -9,13 +9,48 @@ const meetingDate = document.querySelector('#meeting-date');
 const meetingTime = document.querySelector('#meeting-time');
 const meetingTimezone = document.querySelector('#meeting-timezone');
 const meetingLink = document.querySelector('#meeting-link');
+const upcomingMeetings = document.querySelector('#upcoming-meetings');
 
-// Initializes the scripts on the page
-const init = (e) => {
-  e.preventDefault();
+// Generates an upcoming meeting component based on info supplied based on format below
+/*
+  <div class='upcoming-container'>
+    <h3 class='upcoming-book'>The Way of Kings (The Stormlight Archives, Book 1)</h3>
+    <h4 class='upcoming-group'>Fantasy Readers Club</h4>
+    <br>
+    <p class='upcoming-time'>10/15/2020, 4:45 PM (GMT -08:00) Pacific Time (US & Canada)</p>
+    <a class='upcoming-link' href='https://zoom.com/zoomlink'>Meeting Link: https://zoom.com/zoomlink</a>
+  </div>
+*/
+const generateAndAppendMeeting = (title, club, date, time, timezone, link) => {
+  const div = document.createElement('div');
+  div.className = 'upcoming-container';
 
-  document.querySelector('#meeting-timezones').innerHTML = timezones;
-  console.log('initializing');
+  const h3 = document.createElement('h3');
+  h3.className = 'upcoming-book';
+  h3.textContent = title;
+
+  const h4 = document.createElement('h4');
+  h4.className = 'upcoming-group';
+  h4.textContent = club;
+
+  const br = document.createElement('br');
+
+  const p = document.createElement('p');
+  p.className = 'upcoming-time';
+  p.textContent = `${date}, ${time} ${timezone}`;
+
+  const a = document.createElement('a');
+  a.className = 'upcoming-time';
+  a.href = link;
+  a.textContent = `Meeting Link: ${link}`;
+
+  div.appendChild(h3);
+  div.appendChild(h4);
+  div.appendChild(br);
+  div.appendChild(p);
+  div.appendChild(a);
+
+  upcomingMeetings.appendChild(div);
 };
 
 // Sends a request to our server to post information
@@ -46,6 +81,17 @@ const sendRequest = async (e) => {
   console.log('Pushing data...');
   const response = await fetch('/addMeeting', sendObj);
   console.log(await response.json());
+};
+
+// Initializes the scripts on the page
+const init = (e) => {
+  e.preventDefault();
+
+  console.log('initializing');
+  document.querySelector('#meeting-timezones').innerHTML = timezones;
+
+  for (let i = 0; i < 10; i++)
+    generateAndAppendMeeting('BookName Booky Book', 'The Book Club', '10/15/2020', '4:45 PM', 'Pacific Time (US & Canada)', 'https://zoom.com/link');
 };
 
 button.onclick = sendRequest;
