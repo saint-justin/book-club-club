@@ -3,44 +3,35 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
-    <link rel='stylesheet' href='/styles.css'></link>
+    <link rel='stylesheet' href='/style.css'></link>
   </head>
   <body>
-    <h1>Hello world!</h1>
-    <button id='btn'>dont click me</button>
-    <p id='content'>I'm the content section!</p>
+    <main>
+      <div id='meeting-creation'>
+        <div id='meeting-headers'>
+          <h1>Book Club Club</h1>
+          <h2>Organize a new event!</h2>
+        </div>
+        <form id='meeting-creation-form'> 
+          <label for='meeting-title'>Book Title</label>
+          <input type='text' id='meeting-title' name='meeting-title' placeholder='The Way of Kings (The Stormlight Archives #01)'></input>
+          <label for='meeting-club'>Book Club</label>
+          <input type='text' id='meeting-club' name='meeting-club' placeholder='People Who Like Airplanes'></input>
+          <label for='meeting-date'>Meeting Date</label>
+          <input type='date' id='meeting-date' name='meeting-date'></input>
+          <label for='meeting-time'>Meeting Time</label>
+          <input type='time' id='meeting-time' name='meeting-time'></input>
+          <label for='meeting-timezone'>Meeting Timezone</label>
+          <select name='timezone'></select>
+          <label for='meeting-zoom'>Meeting Link</label>
+          <input type='text' id='meeting-zoom' name='meeting-zoom' placeholder='https://zoom.com/zoomlink'></select>
+          <button id='btn'>Schedule Event</button>
+        </form>
+      </div>
+      <div id='upcoming-meetings'>
+        <h2>Upcoming Events</h2>
+      </div>
+    </main>
   </body>
-  <script>
-    const button = document.querySelector('#btn');
-    const content = document.querySelector('#content');
-
-    const sendRequest = async (e) => {
-      e.preventDefault();
-
-      const data = {
-        title: 'BookName: The Musical!',
-        date: 'OCT-01-2020',
-        time: '4:20',
-        am: true,
-        timezone: 'PST',
-        zoom: 'zoom.com',
-      };
-
-      console.log('Creating send object')
-
-      const sendObj = {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(data),
-      };
-
-      console.log('Pushing data...');
-      const response = await fetch('/addMeeting', sendObj);
-    }
-
-    button.onclick = sendRequest;
-  </script>
+  <script src='./main.js'></script>
 </html>

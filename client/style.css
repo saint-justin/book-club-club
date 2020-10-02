@@ -1,4 +1,73 @@
-*{
+/* === Font Impots === */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Sansita+Swashed:wght@300&display=swap');
+
+/* === Baseline Structural Rules === */
+* {
   padding: 0;
   margin: 0;
+  /* font-family: 'Sansita Swashed', cursive; */
+}
+
+main {
+  display: flex;
+  width: 100%;
+  background-color: red;
+  height: 100vh;
+}
+
+/* === Rules for Meeting Creation section === */
+#meeting-creation {
+  width: 66vw;
+  background: slategray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#meeting-headers {
+  background-color: yellow;
+  width: 40vw;
+  text-align: center;
+
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 100;
+  
+}
+
+#meeting-headers h1 {
+  font-size: 36pt;
+}
+
+#meeting-headers h2 {
+  font-size: 20pt;
+}
+
+#meeting-creation-form {
+  width: 40vw;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 16px 16px;
+  box-sizing: border-box;
+}
+
+#meeting-creation-form label {
+  margin-top: 8px;
+}
+
+#meeting-creation-form input, #meeting-creation-form button {
+  margin-top: 4px;
+  padding: 4px;
+}
+
+#meeting-creation-form button {
+  width: 40%;
+  align-self: flex-end;
+}
+
+/* === Rules for Upcoming Meetings section === */
+#upcoming-meetings {
+  background-color: orange;
+  flex-grow: 1; /* Takes up the remaining 1/3 of the screen*/
 }
