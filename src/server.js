@@ -26,8 +26,7 @@ const directory = {
 // Handles incoming requests to the server
 const onRequest = (req, res) => {
   const parsedUrl = url.parse(req.url);
-  if (parsedUrl.pathname !== 'getVersion') console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
-  // console.log(params);
+  if (parsedUrl.pathname !== '/getVersion') console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
 
   if (req.method === 'PUT' && directory[req.method][parsedUrl.pathname]) {
     directory[req.method][parsedUrl.pathname](req, res, parsedUrl, requestHandler.addMeeting);

@@ -131,14 +131,14 @@ input, select {
 
 /* === Rules for Upcoming Meetings section === */
 #upcoming-meetings {
-  background-color: orange;
+  background-color: var(--white);
   flex-grow: 1; /* Takes up the remaining 1/3 of the screen*/
   overflow-y: scroll;
   padding: 0;
 }
 
 #upcoming-events-title {
-  background-color: red;
+  background-color: var(--white);
   text-align: center;
   padding: 48px;
   margin-bottom: 16px;
