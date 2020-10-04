@@ -7,7 +7,7 @@ const meetingTitle = document.querySelector('#meeting-title');
 const meetingClub = document.querySelector('#meeting-club');
 const meetingDate = document.querySelector('#meeting-date');
 const meetingTime = document.querySelector('#meeting-time');
-const meetingTimezone = document.querySelector('#meeting-timezone');
+const meetingTimezone = document.querySelector('#meeting-timezones');
 const meetingLink = document.querySelector('#meeting-link');
 const upcomingMeetings = document.querySelector('#upcoming-meetings');
 
@@ -54,8 +54,10 @@ const generateAndAppendMeeting = (title, club, date, time, timezone, link) => {
 };
 
 // Sends a request to our server to post information
-const sendRequest = async (e) => {
+const sendPut = async (e) => {
   e.preventDefault();
+
+  console.log('Creating Data Object for PUT');
 
   const data = {
     title: meetingTitle.value,
@@ -90,9 +92,10 @@ const init = (e) => {
   console.log('initializing');
   document.querySelector('#meeting-timezones').innerHTML = timezones;
 
-  for (let i = 0; i < 10; i++)
+  for (let i = 0; i < 10; i++) {
     generateAndAppendMeeting('BookName Booky Book', 'The Book Club', '10/15/2020', '4:45 PM', 'Pacific Time (US & Canada)', 'https://zoom.com/link');
+  }
 };
 
-button.onclick = sendRequest;
+button.onclick = sendPut;
 window.onload = init;

@@ -1,6 +1,5 @@
 const http = require('http');
 const url = require('url');
-const query = require('querystring');
 
 // Main event handlers
 const requestHandler = require('./requestHandler.js');
@@ -12,17 +11,19 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 // Handles incoming requests to the server
 const onRequest = (req, res) => {
   const parsedUrl = url.parse(req.url);
-  const params = parsedUrl.pathname !== 'PUT' ? query.parse(parsedUrl.query) : '';
   console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
-  console.log(params);
+  // console.log(params);
 
   switch (req.method) {
     case 'GET':
       if (parsedUrl.pathname === '/') requestHandler.getClient(req, res);
-      if (parsedUrl.pathname === '/getMeetings') requestHandler.getMeetings(req, res);
+      else if (parsedUrl.pathname === '/style.css') requestHandler.getStyle(req, res);
+      else if (parsedUrl.pathname === '/getMeetings') requestHandler.getMeetings(req, res);
+      else if (parsedUrl.pathname === '/main.js') requestHandler.getScriptMain(req, res);
+      else if (parsedUrl.pathname === '/timezones.js') requestHandler.getScriptTimezones(req, res);
       break;
     case 'PUT':
-      putHandler.handlePutRequest(req, res, parsedUrl, requestHandler.addMeeting);
+      if (parsedUrl.pathname === '/addMeeting') putHandler.handlePutRequest(req, res, parsedUrl, requestHandler.addMeeting);
       break;
     default:
       console.log(`ERR: Method type ${req.method} not acceptable`);

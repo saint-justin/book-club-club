@@ -5,9 +5,9 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "pretest": "eslint ./src --fix",
+    "pretest": "eslint ./src ./client --fix",
     "test": "echo \"Tests Complete\"",
-    "dev": "nodemon --watch ./src --watch ./client ./src/server.js"
+    "dev": "nodemon -e html,js,json --watch ./src --watch  ./client ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,10 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "countries-and-timezones": "^2.3.1",
     "node-fetch": "^2.6.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "short-uuid": "^4.1.0",
     "xml2js": "^0.4.23"
   }
