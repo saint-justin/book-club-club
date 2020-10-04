@@ -6,7 +6,10 @@ const style = fs.readFileSync(`${__dirname}/../client/style.css`);
 const scriptMain = fs.readFileSync(`${__dirname}/../client/main.js`);
 const scriptTimezones = fs.readFileSync(`${__dirname}/../client/timezones.js`);
 
-const meetingData = { };
+const meetingData = {
+  version: short.generate(),
+  content: {},
+};
 
 // Helper fxn to easily generate a header type
 const generateHeader = (type) => ({ 'Content-Type': type });
@@ -50,7 +53,14 @@ const getScriptTimezones = (req, res) => {
 // Gets the stored meetings and give 'em to the client
 const getMeetings = (req, res) => {
   const head = generateHeader('application/json');
-  const body = Object.keys(meetingData).length !== 0 ? meetingData : { message: 'No meetings planned' };
+  const body = Object.keys(meetingData.content).length !== 0 ? meetingData.content : { message: 'No meetings planned' };
+  respondJSON(req, res, 200, head, body);
+};
+
+// Gets the current version of info in storage, used to check if updates are needed
+const getVersion = (req, res) => {
+  const head = generateHeader('application/json');
+  const body = { version: meetingData.version };
   respondJSON(req, res, 200, head, body);
 };
 
@@ -79,12 +89,22 @@ const addMeeting = (req, res, params) => {
     zoomlink: params.zoom,
   };
 
-  meetingData[entryId] = newEntry;
+  // Update the meeting data info and give it a new randomly generated version
+  meetingData.version = short.generate();
+  meetingData.content[entryId] = newEntry;
   body.id = 'Success';
   body.unique = entryId;
 
   console.log(meetingData);
+  respondJSON(req, res, 200, head, body);
+};
 
+const notFound = (req, res) => {
+  const head = generateHeader('application/json');
+  const body = {
+    id: 'missing',
+    message: 'The content you were looking for was not found',
+  };
   respondJSON(req, res, 200, head, body);
 };
 
@@ -93,7 +113,9 @@ module.exports = {
   getClient,
   getStyle,
   getMeetings,
+  getVersion,
   getScriptMain,
   getScriptTimezones,
   addMeeting,
+  notFound,
 };
