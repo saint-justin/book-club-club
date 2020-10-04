@@ -85,14 +85,21 @@ input, select {
 
 #meeting-creation-form input, #meeting-creation-form select {
   margin-top: 4px;
-  padding: 8px;
+  padding: 12px;
 }
 
-#meeting-creation-form button {
+#btn {
   width: 40%;
   align-self: flex-end;
   margin-top: 16px;
-  padding: 8px;
+  padding: 12px;
+  background-color: var(--action-color);
+  border: none;
+
+  font-family: var(--baskerville);
+  color: var(--white);
+  font-style: bold;
+  font-size: 12pt;
 }
 
 /* === Rules for Upcoming Meetings section === */
