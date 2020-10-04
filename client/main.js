@@ -42,16 +42,18 @@ const generateAndAppendMeeting = (title, club, date, time, timezone, link) => {
   p.className = 'upcoming-time';
   p.textContent = `${date}, ${time} ${timezone}`;
 
+  const p2 = document.createElement('p');
   const a = document.createElement('a');
   a.className = 'upcoming-time';
   a.href = link;
   a.textContent = `Meeting Link: ${link}`;
+  p2.appendChild(a);
 
   div.appendChild(h3);
   div.appendChild(h4);
   div.appendChild(br);
   div.appendChild(p);
-  div.appendChild(a);
+  div.appendChild(p2);
 
   upcomingIndividuals.appendChild(div);
 };

@@ -150,18 +150,34 @@ input, select {
   font-family: 'Libre Baskerville', serif;
 }
 
+#upcoming-individuals {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 12px;
+}
+
 .upcoming-container {
-  background-color: mediumpurple;
-  padding: 16px 32px;;
+  font-family: var(--oswald);
+  border: var(--std-border);
+  border-width: 1px 0 1px 1px;
+  background-color: var(--white);
+  padding: 16px 32px;
   margin-bottom: 8px;
+  width: 100%;
 }
 
 .upcoming-container * {
   font-size: 14pt;
   font-weight: normal;
+  text-align: left;
 }
 
 .upcoming-book {
   font-size: 18pt;
   font-weight: bold;
+  letter-spacing: 1px;
+  padding-top: 8px;
 }
+
+
+/* TODO: Add a breakpoint to single-column-style at 1300px */
