@@ -26,7 +26,7 @@ const directory = {
 // Handles incoming requests to the server
 const onRequest = (req, res) => {
   const parsedUrl = url.parse(req.url);
-  console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
+  if (parsedUrl.pathname !== 'getVersion') console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
   // console.log(params);
 
   if (req.method === 'PUT' && directory[req.method][parsedUrl.pathname]) {
