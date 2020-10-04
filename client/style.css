@@ -61,8 +61,6 @@ h2 {
 }
 
 #meeting-creation-form {
-  display: flex;
-  flex-direction: column;
   width: 40vw;
   background-color: var(--white);
   border: var(--std-border);
@@ -71,7 +69,37 @@ h2 {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+
+  display: grid;
+  grid-auto-rows: auto;
+  grid-gap: 0 16px;
+  grid-template-areas: 
+    "title . "
+    "title-input title-input"
+    "club ."
+    "club-input club-input"
+    "date time"
+    "date-input time-input"
+    "timezone ."
+    "timezone-input timezone-input "
+    "link ."
+    "link-input link-input"   
+    ". button";     
 }
+
+#form-title {        grid-area: title;       }
+#form-title-input {  grid-area: title-input; }
+#form-club {         grid-area: club;        }
+#form-club-input {   grid-area: club-input;  }
+#form-date {         grid-area: date;        }
+#form-date-input {   grid-area: date-input;  }
+#form-time {         grid-area: time;        }
+#form-time-input {   grid-area: time-input;  }
+#form-timezone {     grid-area: timezone;    }
+#form-timezone-input { grid-area: timezone-input; } /* :( */
+#form-link {         grid-area: link;        }
+#form-link-input {   grid-area: link-input;  }
+#btn {               grid-area: button;      }
 
 input, select {
   background-color: var(--field-bg);
@@ -89,7 +117,6 @@ input, select {
 }
 
 #btn {
-  width: 40%;
   align-self: flex-end;
   margin-top: 16px;
   padding: 12px;

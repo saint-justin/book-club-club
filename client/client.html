@@ -13,18 +13,24 @@
           <h2>Organize a new event!</h2>
         </div>
         <form id='meeting-creation-form'> 
-          <label for='meeting-title'>Book Title</label>
-          <input type='text' id='meeting-title' name='meeting-title' placeholder='The Way of Kings (The Stormlight Archives, Book 1)'></input>
-          <label for='meeting-club'>Book Club</label>
-          <input type='text' id='meeting-club' name='meeting-club' placeholder='People Who Like Airplanes'></input>
-          <label for='meeting-date'>Meeting Date</label>
-          <input type='date' id='meeting-date' name='meeting-date'></input>
-          <label for='meeting-time'>Meeting Time</label>
-          <input type='time' id='meeting-time' name='meeting-time'></input>
-          <label for='meeting-timezone'>Meeting Timezone</label>
-          <select name='meeting-timezones' id='meeting-timezones'></select>
-          <label for='meeting-link'>Meeting Link</label>
-          <input type='text' id='meeting-link' name='meeting-link' placeholder='https://zoom.com/zoomlink'></select>
+          <label for='meeting-title' id='form-title'>Book Title</label>
+          <input type='text' id='form-title-input' name='meeting-title' placeholder='The Way of Kings (The Stormlight Archives, Book 1)'></input>
+          
+          <label for='meeting-club' id='form-club'>Book Club</label>
+          <input type='text' id='form-club-input' name='meeting-club' placeholder='People Who Like Airplanes'></input>
+          
+          <label for='meeting-date' id='form-date'>Meeting Date</label>
+          <input type='date' id='form-date-input' name='meeting-date'></input>
+          
+          <label for='meeting-time' id='form-time'>Meeting Time</label>
+          <input type='time' id='form-time-input' name='meeting-time'></input>
+          
+          <label for='meeting-timezone' id='form-timezone'>Meeting Timezone</label>
+          <select name='meeting-timezones' id='form-timezone-input'></select>
+          
+          <label for='meeting-link' id='form-link'>Meeting Link</label>
+          <input type='text' id='form-link-input' name='meeting-link' placeholder='https://zoom.com/zoomlink'></select>
+          
           <button id='btn'>Schedule Event</button>
         </form>
       </div>

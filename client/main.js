@@ -3,12 +3,12 @@ import timezones from '/timezones.js';
 
 // Getting refs to all the inputs on the page
 const button = document.querySelector('#btn');
-const meetingTitle = document.querySelector('#meeting-title');
-const meetingClub = document.querySelector('#meeting-club');
-const meetingDate = document.querySelector('#meeting-date');
-const meetingTime = document.querySelector('#meeting-time');
-const meetingTimezone = document.querySelector('#meeting-timezones');
-const meetingLink = document.querySelector('#meeting-link');
+const meetingTitle = document.querySelector('#form-title-input');
+const meetingClub = document.querySelector('#form-club-input');
+const meetingDate = document.querySelector('#form-date-input');
+const meetingTime = document.querySelector('#form-time-input');
+const meetingTimezone = document.querySelector('#form-timezone-input');
+const meetingLink = document.querySelector('#form-link-input');
 
 const upcomingIndividuals = document.querySelector('#upcoming-individuals');
 
@@ -125,7 +125,7 @@ const checkMeetingVersion = async () => {
 const init = (e) => {
   e.preventDefault();
 
-  document.querySelector('#meeting-timezones').innerHTML = timezones;
+  document.querySelector('#form-timezone-input').innerHTML = timezones;
 
   getMeetings();
   setInterval(checkMeetingVersion, 1000);
