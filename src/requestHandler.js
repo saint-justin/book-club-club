@@ -53,7 +53,7 @@ const getScriptTimezones = (req, res) => {
 // Gets the stored meetings and give 'em to the client
 const getMeetings = (req, res) => {
   const head = generateHeader('application/json');
-  const body = Object.keys(meetingData.content).length !== 0 ? meetingData.content : { message: 'No meetings planned' };
+  const body = meetingData;
   respondJSON(req, res, 200, head, body);
 };
 
@@ -82,7 +82,7 @@ const addMeeting = (req, res, params) => {
   const entryId = short.generate();
   const newEntry = {
     title: params.title,
-    data: params.date,
+    date: params.date,
     time: params.time,
     am: params.am,
     timezone: params.timezone,

@@ -9,7 +9,11 @@ const meetingDate = document.querySelector('#meeting-date');
 const meetingTime = document.querySelector('#meeting-time');
 const meetingTimezone = document.querySelector('#meeting-timezones');
 const meetingLink = document.querySelector('#meeting-link');
+
 const upcomingMeetings = document.querySelector('#upcoming-meetings');
+const upcomingIndividuals = document.querySelector('#upcoming-individuals');
+
+let clientInfo = {};
 
 // Generates an upcoming meeting component based on info supplied based on format below
 /*
@@ -53,6 +57,11 @@ const generateAndAppendMeeting = (title, club, date, time, timezone, link) => {
   upcomingMeetings.appendChild(div);
 };
 
+// Clears all child nodes on a given node
+const clearChildren = (node) => {
+  while (node.children.length > 0) node.removeChild(node.children[0]);
+};
+
 // Sends a request to our server to post information
 const sendPut = async (e) => {
   e.preventDefault();
@@ -85,16 +94,33 @@ const sendPut = async (e) => {
   console.log(await response.json());
 };
 
+// Gets a new set of meetings and plops 'em into the dom
+const getMeetings = async () => {
+  const response = await fetch('/getMeetings');
+  clientInfo = await response.json();
+
+  clearChildren(upcomingIndividuals);
+  for (let i = 0; i < clientInfo.content.length; i++) {
+    generateAndAppendMeeting(clientInfo[i].title, clientInfo[i].date, clientInfo[i].time, 'AM', clientInfo[i].timezone, clientInfo[i].link);
+  }
+};
+
+// Checks if local meetingData matches version of server meetingData
+const checkMeetingVersion = async () => {
+  const response = await fetch('./getVersion');
+  const json = await response.json();
+
+  if (json.version !== clientInfo.version) getMeetings();
+};
+
 // Initializes the scripts on the page
 const init = (e) => {
   e.preventDefault();
 
-  console.log('initializing');
   document.querySelector('#meeting-timezones').innerHTML = timezones;
 
-  for (let i = 0; i < 10; i++) {
-    generateAndAppendMeeting('BookName Booky Book', 'The Book Club', '10/15/2020', '4:45 PM', 'Pacific Time (US & Canada)', 'https://zoom.com/link');
-  }
+  getMeetings();
+  setInterval(checkMeetingVersion, 1000);
 };
 
 button.onclick = sendPut;

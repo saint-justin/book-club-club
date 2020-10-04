@@ -5,9 +5,9 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "pretest": "eslint ./src ./client --fix",
+    "pretest": "eslint ./src --fix",
     "test": "echo \"Tests Complete\"",
-    "dev": "nodemon -e html,js,json --watch ./src --watch  ./client ./src/server.js"
+    "dev": "nodemon -e html,js,json --watch ./src --watch ./client ./src/server.js"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-// Original code copied from: 
+// Original code copied from:
 // https://stackoverflow.com/questions/39263321/javascript-get-html-timezone-dropdown
 
 // Please don't judge my coding abilities based on this lol
