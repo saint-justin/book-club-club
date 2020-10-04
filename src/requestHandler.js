@@ -90,14 +90,23 @@ const addMeeting = (req, res, params) => {
     link: params.zoom,
   };
 
+  // Check if the user is trying to update a given meeting, if so update it accordingly
+  const keys = Object.keys(meetingData.content);
+  for (let i = 0; i < keys.length; i++) {
+    if (params.title === meetingData.content[keys[i]]) {
+      meetingData.content[keys[i]] = newEntry;
+      respondJSON(req, res, 204);
+      return;
+    }
+  }
+
   // Update the meeting data info and give it a new randomly generated version
   meetingData.version = short.generate();
   meetingData.content[entryId] = newEntry;
   body.id = 'Success';
   body.unique = entryId;
 
-  console.log(meetingData);
-  respondJSON(req, res, 200, head, body);
+  respondJSON(req, res, 201, head, body);
 };
 
 const notFound = (req, res) => {
