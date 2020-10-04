@@ -82,11 +82,12 @@ const addMeeting = (req, res, params) => {
   const entryId = short.generate();
   const newEntry = {
     title: params.title,
+    club: params.club,
     date: params.date,
     time: params.time,
     am: params.am,
     timezone: params.timezone,
-    zoomlink: params.zoom,
+    link: params.zoom,
   };
 
   // Update the meeting data info and give it a new randomly generated version

@@ -10,7 +10,6 @@ const meetingTime = document.querySelector('#meeting-time');
 const meetingTimezone = document.querySelector('#meeting-timezones');
 const meetingLink = document.querySelector('#meeting-link');
 
-const upcomingMeetings = document.querySelector('#upcoming-meetings');
 const upcomingIndividuals = document.querySelector('#upcoming-individuals');
 
 let clientInfo = {};
@@ -54,7 +53,7 @@ const generateAndAppendMeeting = (title, club, date, time, timezone, link) => {
   div.appendChild(p);
   div.appendChild(a);
 
-  upcomingMeetings.appendChild(div);
+  upcomingIndividuals.appendChild(div);
 };
 
 // Clears all child nodes on a given node
@@ -100,8 +99,17 @@ const getMeetings = async () => {
   clientInfo = await response.json();
 
   clearChildren(upcomingIndividuals);
-  for (let i = 0; i < clientInfo.content.length; i++) {
-    generateAndAppendMeeting(clientInfo[i].title, clientInfo[i].date, clientInfo[i].time, 'AM', clientInfo[i].timezone, clientInfo[i].link);
+
+  const keys = Object.keys(clientInfo.content);
+  for (let i = 0; i < keys.length; i++) {
+    generateAndAppendMeeting(
+      clientInfo.content[keys[i]].title,
+      clientInfo.content[keys[i]].club,
+      clientInfo.content[keys[i]].date,
+      clientInfo.content[keys[i]].time,
+      clientInfo.content[keys[i]].timezone,
+      clientInfo.content[keys[i]].link,
+    );
   }
 };
 
