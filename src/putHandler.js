@@ -3,8 +3,7 @@ const handlePutRequest = (req, res, parsedUrl, callback) => {
   const body = [];
 
   // If we error out, throw it to the user
-  req.on('error', (err) => {
-    console.dir(err);
+  req.on('error', () => {
     res.statusCode = 400;
     res.end();
   });

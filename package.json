@@ -33,8 +33,6 @@
   "dependencies": {
     "countries-and-timezones": "^2.3.1",
     "node-fetch": "^2.6.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "short-uuid": "^4.1.0",
     "xml2js": "^0.4.23"
   }

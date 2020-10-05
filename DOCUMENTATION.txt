@@ -1,0 +1,14 @@
+Purpose:
+This is a site dedicated to book-club lovers who are currently lacking a book club. It's a way for folks who want to read more to find other people to read with. Anybody can create a post with their upcoming book club meetings (as many as they see fit going out into the future) and anybody else on the site can easily connect by going to the posted video chat meetings (zoom or otherwise) to connect!
+
+What's the API Do?
+The API gets the clients all the data they need, from website information to upcoming meetings. It also handles clients posting new meetings to the server. 
+
+What went right & wrong?
+Initially, I'd planned that updating would happen via giving individuals who post their meetings a unique ID (which does get generated and used as the key to their post in the server), but this ended up requiring extra UI creation that I'm just too burnt out to add in so it just updates based on post titles. I really do like the minimalist visuals for the site, and I'm a fan of the concept as well.
+
+How would I improve the app?
+There would be two main items. First, I'd finish implementing the above measures so each poster has a bit more security such that only they or the person that pass that key off to can edit the post. The other item would be adding in a seperate system so individuals can sort posts by genre (fantasy/sci-fi/romance/etc).
+
+Above & Beyond?
+I think there's 3 main chunks that take this project above and beyond. First off, I implemented 3 different NPM packages outside of what we've learned about in class (node-fetch, short-uuid, and countries-and-timezones) to better the site. Second, I think the UI for this project, even if simple, is super clean compared to what would be required. I even went so far as learning Figma to design it out prior to coding (link to figma doc: https://www.figma.com/file/jNxh1qWvhbcwtY7LCPdPOX/Untitled?node-id=0%3A1). Finally, I put like 10 hours of work into an initial prototype of this that implemented the GoodReads API as well for extra info on the books, but Amazon sucks so that ended up not working. Idk if that last one should actually get me extra credit, but I even implemented an XML to JSON parser for that and my god that gave me a bad time. Please take pity on me.

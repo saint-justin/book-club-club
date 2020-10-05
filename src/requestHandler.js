@@ -7,11 +7,10 @@ const style = fs.readFileSync(`${__dirname}/../client/style.css`);
 const scriptMain = fs.readFileSync(`${__dirname}/../client/main.js`);
 const scriptTimezones = fs.readFileSync(`${__dirname}/../client/timezones.js`);
 
-const initialKey = short.generate();
 const meetingData = {
   version: short.generate(),
   content: {
-    initialKey: {
+    dummyData: {
       title: 'The Final Empire (Mistborn, #1)',
       club: 'Sanderson\'s Fantasy Fans',
       date: '2020-11-25',
@@ -137,8 +136,6 @@ const notFound = (req, res) => {
   };
   respondJSON(req, res, 200, head, body);
 };
-
-
 
 // Export all the user-accessible items
 module.exports = {

@@ -67,7 +67,7 @@ const clearChildren = (node) => {
 const sendPut = async (e) => {
   e.preventDefault();
 
-  console.log('Creating Data Object for PUT');
+  // console.log('Creating Data Object for PUT');
 
   const data = {
     title: meetingTitle.value,
@@ -78,8 +78,8 @@ const sendPut = async (e) => {
     zoom: meetingLink.value,
   };
 
-  console.log(data);
-  console.log('Creating send object');
+  // console.log(data);
+  // console.log('Creating send object');
 
   const sendObj = {
     method: 'PUT',
@@ -90,7 +90,7 @@ const sendPut = async (e) => {
     body: JSON.stringify(data),
   };
 
-  console.log('Pushing data...');
+  // console.log('Pushing data...');
   const response = await fetch('/addMeeting', sendObj);
   console.log(await response.json());
 };
@@ -100,8 +100,8 @@ const getMeetings = async () => {
   const response = await fetch('/getInfo?content=true');
   clientInfo = await response.json();
 
-  console.log('CLIENT INFORMATION');
-  console.log(clientInfo);
+  // console.log('CLIENT INFORMATION');
+  // console.log(clientInfo);
 
   clearChildren(upcomingIndividuals);
 
@@ -123,8 +123,7 @@ const checkMeetingVersion = async () => {
   const response = await fetch('./getInfo?version=true');
   const json = await response.json();
 
-  console.log(`LOCAL VERSION: ${clientInfo.version}    SERVER VERSION: ${json.version}`);
-
+  // console.log(`LOCAL VERSION: ${clientInfo.version}    SERVER VERSION: ${json.version}`);
   if (json.version !== clientInfo.version) getMeetings();
 };
 
