@@ -97,8 +97,11 @@ const sendPut = async (e) => {
 
 // Gets a new set of meetings and plops 'em into the dom
 const getMeetings = async () => {
-  const response = await fetch('/getMeetings');
+  const response = await fetch('/getInfo?content=true');
   clientInfo = await response.json();
+
+  console.log('CLIENT INFORMATION');
+  console.log(clientInfo);
 
   clearChildren(upcomingIndividuals);
 
@@ -117,8 +120,10 @@ const getMeetings = async () => {
 
 // Checks if local meetingData matches version of server meetingData
 const checkMeetingVersion = async () => {
-  const response = await fetch('./getVersion');
+  const response = await fetch('./getInfo?version=true');
   const json = await response.json();
+
+  console.log(`LOCAL VERSION: ${clientInfo.version}    SERVER VERSION: ${json.version}`);
 
   if (json.version !== clientInfo.version) getMeetings();
 };

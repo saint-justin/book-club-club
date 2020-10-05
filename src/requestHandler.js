@@ -1,5 +1,6 @@
 const fs = require('fs');
 const short = require('short-uuid');
+const query = require('querystring');
 
 const client = fs.readFileSync(`${__dirname}/../client/client.html`);
 const style = fs.readFileSync(`${__dirname}/../client/style.css`);
@@ -50,17 +51,24 @@ const getScriptTimezones = (req, res) => {
   respondJSON(req, res, 200, head, scriptTimezones);
 };
 
-// Gets the stored meetings and give 'em to the client
-const getMeetings = (req, res) => {
+// Gets the stored meetings or version and give 'em to the client
+const getInfo = (req, res, parsedUrl) => {
   const head = generateHeader('application/json');
-  const body = meetingData;
-  respondJSON(req, res, 200, head, body);
-};
+  const requested = query.parse(parsedUrl.query);
+  let body;
+  if (requested.content) {
+    body = meetingData;
+  } else if (requested.version) {
+    body = { version: meetingData.version };
+  } else {
+    body = {
+      id: 'BadRequest',
+      message: 'Missing required parameters',
+    };
+    respondJSON(req, res, 400, head, body);
+    return;
+  }
 
-// Gets the current version of info in storage, used to check if updates are needed
-const getVersion = (req, res) => {
-  const head = generateHeader('application/json');
-  const body = { version: meetingData.version };
   respondJSON(req, res, 200, head, body);
 };
 
@@ -122,8 +130,7 @@ const notFound = (req, res) => {
 module.exports = {
   getClient,
   getStyle,
-  getMeetings,
-  getVersion,
+  getInfo,
   getScriptMain,
   getScriptTimezones,
   addMeeting,

@@ -13,8 +13,7 @@ const directory = {
   GET: {
     '/': requestHandler.getClient,
     '/style.css': requestHandler.getStyle,
-    '/getMeetings': requestHandler.getMeetings,
-    '/getVersion': requestHandler.getVersion,
+    '/getInfo': requestHandler.getInfo,
     '/main.js': requestHandler.getScriptMain,
     '/timezones.js': requestHandler.getScriptTimezones,
   },
@@ -26,12 +25,10 @@ const directory = {
 // Handles incoming requests to the server
 const onRequest = (req, res) => {
   const parsedUrl = url.parse(req.url);
-  if (parsedUrl.pathname !== '/getVersion') console.log(`PATH: ${parsedUrl.pathname}    METHOD: ${req.method}`);
-
   if (req.method === 'PUT' && directory[req.method][parsedUrl.pathname]) {
     directory[req.method][parsedUrl.pathname](req, res, parsedUrl, requestHandler.addMeeting);
   } else if (req.method === 'GET' && directory[req.method][parsedUrl.pathname]) {
-    directory[req.method][parsedUrl.pathname](req, res);
+    directory[req.method][parsedUrl.pathname](req, res, parsedUrl);
   } else {
     requestHandler.notFound(req, res);
   }
@@ -39,4 +36,3 @@ const onRequest = (req, res) => {
 
 // Spin up the actual server
 http.createServer(onRequest).listen(port);
-console.log(`Listening on 127.0.0.1:${port}`);
