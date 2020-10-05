@@ -7,9 +7,20 @@ const style = fs.readFileSync(`${__dirname}/../client/style.css`);
 const scriptMain = fs.readFileSync(`${__dirname}/../client/main.js`);
 const scriptTimezones = fs.readFileSync(`${__dirname}/../client/timezones.js`);
 
+const initialKey = short.generate();
 const meetingData = {
   version: short.generate(),
-  content: {},
+  content: {
+    initialKey: {
+      title: 'The Final Empire (Mistborn, #1)',
+      club: 'Sanderson\'s Fantasy Fans',
+      date: '2020-11-25',
+      time: '6:45',
+      am: false,
+      timezone: '(GMT-06:00) Central Time (US & Canada)',
+      link: 'https://rit.zoom.us/j/93037524520',
+    },
+  },
 };
 
 // Helper fxn to easily generate a header type
@@ -117,6 +128,7 @@ const addMeeting = (req, res, params) => {
   respondJSON(req, res, 201, head, body);
 };
 
+// Returns a 404 when a given item is not found
 const notFound = (req, res) => {
   const head = generateHeader('application/json');
   const body = {
@@ -125,6 +137,8 @@ const notFound = (req, res) => {
   };
   respondJSON(req, res, 200, head, body);
 };
+
+
 
 // Export all the user-accessible items
 module.exports = {
